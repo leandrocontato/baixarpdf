@@ -1,0 +1,4 @@
+{
+"livePreview.matchGlobPattern": "**/*.{html,php}",
+"livePreview.previewOnFileOpen": true,
+}
