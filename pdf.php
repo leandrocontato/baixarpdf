@@ -4,28 +4,34 @@ if (isset($_POST['div_campos'])) {
 
     class CustomPDF extends FPDF
     {
-        // Variáveis para cabeçalho e rodapé
         private $headerText = 'Cabeçalho';
         private $footerText = 'Rodapé';
+        private $margemEsquerda = 7;
+        private $margemDireita = 10;
+        private $margemTopo = 10;
+        private $alturaCell = 4;
+        private $linhaCabecalho_01 = 0;
+        private $alturaBordaRodape = 13;
 
         function Header()
         {
-            // Cabeçalho
+            // $this->Image('logo_infoconsig.png', $this->margemEsquerda, $this->margemTopo, 30);
+
             $this->SetFont('Arial', 'B', 12);
             $this->Cell(0, 10, utf8_decode($this->headerText), 0, 1, 'C');
         }
 
         function Footer()
         {
-            // Rodapé
-            $this->SetY(-15);
+            $this->SetY(-$this->alturaBordaRodape);
             $this->SetFont('Arial', 'I', 8);
             $this->Cell(0, 10, utf8_decode($this->footerText), 0, 0, 'C');
+            $this->Cell(0, 10, utf8_decode(date('d/m/Y H:i:s') . ' Página ' . $this->PageNo() . ' de ' . $this->AliasNbPages()), 0, 0, 'L');
+            $this->Cell(0, 10, utf8_decode('http://www.infoconsig.com.br'), 0, 0, 'R');
         }
 
         function HTMLTable($html)
         {
-            // Função para desenhar uma tabela HTML
             $dom = new DOMDocument();
             $dom->loadHTML($html);
             $tables = $dom->getElementsByTagName('table');
@@ -47,25 +53,32 @@ if (isset($_POST['div_campos'])) {
 
     $conteudo = $_POST['div_campos'];
 
-    $pdf = new CustomPDF('P', 'mm', 'A4'); // Define o tamanho do papel como A4
+    $orientation = 'L';
+    $formatPage = 'A4';
+    $margemEsquerda = 7;
+    $margemDireita = 10;
+    $margemTopo = 10;
+    $alturaCell = 4;
+    $linhaCabecalho_01 = 0;
+    $alturaBordaRodape = 13;
+
+    $pdf = new CustomPDF($orientation, 'mm', $formatPage);
     $pdf->AliasNbPages();
+    $pdf->SetMargins($margemEsquerda, $margemTopo, $margemDireita);
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 12);
     $pdf->Write(10, utf8_decode($conteudo));
 
-    // Verifica se há tabelas dentro da div
     if (strpos($conteudo, '<table') !== false) {
         $pdf->HTMLTable($conteudo);
     }
 
-    $data = date('Ymd'); // Obtém a data atual no formato YYYYMMDD
-    $nome_arquivo = 'consulta-de-margem-de-consignacao-' . $data . '.pdf'; // Personaliza o nome do arquivo com a data
-
-    $pdf->Output($nome_arquivo, 'D');
+    ob_clean();
+    $nomeArquivo = 'Consulta-de-Margem-de-Consignacao' . date('Ymd') . '.pdf';
+    $pdf->Output($nomeArquivo, 'D');
     exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
