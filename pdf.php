@@ -1,3 +1,19 @@
+<?php
+if (isset($_POST['div_campos'])) {
+    require('FPDF/fpdf.php');
+
+    $conteudo = $_POST['div_campos'];
+
+    $pdf = new FPDF();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->Cell(40, 10, $conteudo);
+
+    $pdf->Output('nome_arquivo.pdf', 'D');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,9 +28,9 @@
 
     <script>
         document.getElementById('btn-print').addEventListener('click', function() {
-            var divConteudo = document.getElementById('div_campos').innerHTML;
+            var div_campos = document.getElementById('div_campos').innerHTML;
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'gerar_pdf.php');
+            xhr.open('POST', window.location.href);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.responseType = 'blob';
             xhr.onload = function() {
@@ -29,8 +45,8 @@
                 }
             };
             var formData = new FormData();
-            formData.append('conteudo', divConteudo);
-            xhr.send(formData);
+            formData.append('div_campos', div_campos);
+            xhr.send(new URLSearchParams(formData).toString());
         });
     </script>
 </body>
