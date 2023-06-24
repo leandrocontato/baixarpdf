@@ -2,17 +2,70 @@
 if (isset($_POST['div_campos'])) {
     require('FPDF/fpdf.php');
 
+    class CustomPDF extends FPDF
+    {
+        // Variáveis para cabeçalho e rodapé
+        private $headerText = 'Cabeçalho';
+        private $footerText = 'Rodapé';
+
+        function Header()
+        {
+            // Cabeçalho
+            $this->SetFont('Arial', 'B', 12);
+            $this->Cell(0, 10, utf8_decode($this->headerText), 0, 1, 'C');
+        }
+
+        function Footer()
+        {
+            // Rodapé
+            $this->SetY(-15);
+            $this->SetFont('Arial', 'I', 8);
+            $this->Cell(0, 10, utf8_decode($this->footerText), 0, 0, 'C');
+        }
+
+        function HTMLTable($html)
+        {
+            // Função para desenhar uma tabela HTML
+            $dom = new DOMDocument();
+            $dom->loadHTML($html);
+            $tables = $dom->getElementsByTagName('table');
+
+            foreach ($tables as $table) {
+                $rows = $table->getElementsByTagName('tr');
+                $this->Ln();
+                foreach ($rows as $row) {
+                    $cells = $row->getElementsByTagName('td');
+                    foreach ($cells as $cell) {
+                        $content = $cell->nodeValue;
+                        $this->Cell(40, 10, utf8_decode($content), 1);
+                    }
+                    $this->Ln();
+                }
+            }
+        }
+    }
+
     $conteudo = $_POST['div_campos'];
 
-    $pdf = new FPDF();
+    $pdf = new CustomPDF('P', 'mm', 'A4'); // Define o tamanho do papel como A4
+    $pdf->AliasNbPages();
     $pdf->AddPage();
-    $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(40, 10, $conteudo);
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Write(10, utf8_decode($conteudo));
 
-    $pdf->Output('nome_arquivo.pdf', 'D');
+    // Verifica se há tabelas dentro da div
+    if (strpos($conteudo, '<table') !== false) {
+        $pdf->HTMLTable($conteudo);
+    }
+
+    $data = date('Ymd'); // Obtém a data atual no formato YYYYMMDD
+    $nome_arquivo = 'consulta-de-margem-de-consignacao-' . $data . '.pdf'; // Personaliza o nome do arquivo com a data
+
+    $pdf->Output($nome_arquivo, 'D');
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +77,7 @@ if (isset($_POST['div_campos'])) {
 
 <body>
     <div id="div_campos" class="col-md-12">oi eu sou o goku</div>
-    <button type="button" id="btn-print" class="btn btn-default"><i class="fas fa-download"></i> Baixar PDF</button>
+    <button href="#" type="button" id="btn-print" class="btn btn-default"><i class="fas fa-download"></i> Baixar PDF</button>
 
     <script>
         document.getElementById('btn-print').addEventListener('click', function() {
