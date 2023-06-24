@@ -16,7 +16,6 @@ if (isset($_POST['div_campos'])) {
         function Header()
         {
             // $this->Image('logo_infoconsig.png', $this->margemEsquerda, $this->margemTopo, 30);
-
             $this->SetFont('Arial', 'B', 12);
             $this->Cell(0, 10, utf8_decode($this->headerText), 0, 1, 'C');
         }
@@ -49,28 +48,25 @@ if (isset($_POST['div_campos'])) {
                 }
             }
         }
-
     }
 
     $conteudo = $_POST['div_campos'];
 
-    $orientation = 'L';
-    $formatPage = 'A4';
-    $margemEsquerda = 7;
-    $margemDireita = 10;
-    $margemTopo = 10;
-    $alturaCell = 4;
-    $linhaCabecalho_01 = 0;
-    $alturaBordaRodape = 13;
+    $pdf = new CustomPDF('L', 'mm', 'A4');
+    $pdf->headerText = 'Cabeçalho';
+    $pdf->footerText = 'Rodapé';
+    $pdf->margemEsquerda = 7;
+    $pdf->margemDireita = 10;
+    $pdf->margemTopo = 10;
+    $pdf->alturaCell = 4;
+    $pdf->linhaCabecalho_01 = 0;
+    $pdf->alturaBordaRodape = 13;
 
-    $pdf = new CustomPDF($orientation, 'mm', $formatPage);
     $pdf->AliasNbPages();
-    $pdf->SetMargins($margemEsquerda, $margemTopo, $margemDireita);
+    $pdf->SetMargins($pdf->margemEsquerda, $pdf->margemTopo, $pdf->margemDireita);
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 12);
-    if (strpos($conteudo, '<table') !== false) {
-        $pdf->HTMLTable($conteudo);
-    }
+
     if (strpos($conteudo, '<table') !== false) {
         $pdf->HTMLTable($conteudo);
     }
@@ -141,7 +137,7 @@ if (isset($_POST['div_campos'])) {
                                     </div>
                                     <div class="col-md-12 text-center">
                                         <p style="font-size: 13px; font-weight: 500;"><span style="color: red;">Importante:</span> Somente quando determinado pelo regulamento da sua folha de pagamento, o limite do uso da margem pode ser comprometido em função do valor excedente utilizado da margem em outro tipo de consignação, por isso, o salda da margem consultado poderá ser menor.</p>
-                                    </div>      
+                                    </div>
                                 </div>
                             </div>
                         </div>
