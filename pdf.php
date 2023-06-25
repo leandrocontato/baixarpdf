@@ -160,11 +160,6 @@ if (isset($_POST['div_campos'])) {
     $pdf->Output();
 }
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
