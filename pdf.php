@@ -18,7 +18,6 @@ if (isset($_POST['div_campos'])) {
 
         function Header()
         {
-            // $this->Image('logo_infoconsig.png', $this->margemEsquerda, $this->margemTopo, 10, 6, 30);
             $this->SetFont('Arial', 'B', 15);
             $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->headerText), 0, 1, 'C');
             $this->Cell(30, 10, 'infoconsig', 1, 0, 'C');
@@ -66,21 +65,15 @@ if (isset($_POST['div_campos'])) {
                         $this->Ln($this->alturaCell);
                         break;
                     case 'b':
-                        $this->SetFont('Arial', 'B');
-                        $this->processChildren($node);
-                        $this->SetFont('Arial', '');
-                        break;
                     case 'i':
-                        $this->SetFont('Arial', 'I');
-                        $this->processChildren($node);
-                        $this->SetFont('Arial', '');
-                        break;
                     case 'u':
-                        $this->SetFont('Arial', 'U');
+                        $this->SetFont('Arial', $tag === 'b' ? 'B' : ($tag === 'i' ? 'I' : 'U'));
                         $this->processChildren($node);
                         $this->SetFont('Arial', '');
                         break;
                     case 'table':
+
+
                         $this->isTable = true;
                         $this->HTMLTable($node->C14N());
                         $this->isTable = false;
@@ -496,7 +489,6 @@ if (isset($_POST['div_campos'])) {
     </style>
     <script>
         document.getElementById('btn-print').addEventListener('click', function() {
-            var div_campos = document.getElementById('div_campos').innerHTML;
             var xhr = new XMLHttpRequest();
             xhr.open('POST', window.location.href);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -506,20 +498,14 @@ if (isset($_POST['div_campos'])) {
                     var blob = new Blob([xhr.response], {
                         type: 'application/pdf'
                     });
-
-                    var currentDate = new Date();
-                    var dateString = currentDate.toISOString().split('T')[0];
-                    var fileName = 'Consulta de Margem de Consignação ' + dateString + '.pdf';
-
+                    var fileName = 'Consulta de Margem de Consignação ' + new Date().toISOString().split('T')[0] + '.pdf';
                     var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
+                    link.href = URL.createObjectURL(blob);
                     link.download = fileName;
                     link.click();
                 }
             };
-            var formData = new FormData();
-            formData.append('div_campos', div_campos);
-            xhr.send(new URLSearchParams(formData).toString());
+            xhr.send('div_campos=' + encodeURIComponent(document.getElementById('div_campos').innerHTML));
         });
     </script>
 </body>
