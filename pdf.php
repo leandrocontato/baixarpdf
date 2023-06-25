@@ -18,17 +18,27 @@ if (isset($_POST['div_campos'])) {
 
         function Header()
         {
-            // $this->Image('logo_infoconsig.png', $this->margemEsquerda, $this->margemTopo, 30);
-            $this->SetFont('Arial', 'B', 12);
-            $this->Cell(0, 10, utf8_decode($this->headerText), 0, 1, 'C');
+            // $this->Image('logo_infoconsig.png', $this->margemEsquerda, $this->margemTopo, 10, 6, 30);
+            $this->SetFont('Arial', 'B', 15);
+            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->headerText), 0, 1, 'C');
+            $this->Cell(30, 10, 'infoconsig', 1, 0, 'C');
+            $this->Ln(20);
         }
 
         function Footer()
         {
             $this->SetY(-$this->alturaBordaRodape);
             $this->SetFont('Arial', 'I', 8);
-            $this->Cell(0, 10, utf8_decode($this->footerText), 0, 0, 'C');
-            $this->Cell(0, 10, date('d/m/Y H:i:s') . ' Página ' . $this->PageNo() . ' de ' . $this->AliasNbPages(), 0, 0, 'L');
+
+            $this->SetX($this->margemEsquerda);
+            $this->Cell(0, 10, date('d/m/Y H:i:s'), 0, 0, 'L');
+
+            $this->SetX(($this->margemEsquerda + $this->margemDireita) / 2);
+            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->footerText), 0, 0, 'C');
+
+            $this->SetX($this->margemDireita);
+            $this->Cell(0, 0, iconv('UTF-8', 'ISO-8859-1', 'Página') . ' ' . $this->PageNo() . ' de ' . $this->AliasNbPages(), 0, 0, 'C');
+
             $this->Cell(0, 10, 'http://www.infoconsig.com.br', 0, 0, 'R');
         }
 
@@ -47,8 +57,7 @@ if (isset($_POST['div_campos'])) {
         function processNode($node)
         {
             if ($node->nodeType === XML_TEXT_NODE) {
-                // Utilizar a função utf8_decode para tratar os caracteres corretamente
-                $this->Write($this->alturaCell, utf8_decode($node->nodeValue));
+                $this->Write($this->alturaCell, iconv('UTF-8', 'ISO-8859-1', $node->nodeValue));
             } elseif ($node->nodeType === XML_ELEMENT_NODE) {
                 $tag = strtolower($node->nodeName);
 
@@ -76,10 +85,23 @@ if (isset($_POST['div_campos'])) {
                         $this->HTMLTable($node->C14N());
                         $this->isTable = false;
                         break;
-                    case 'td':
-                        $content = $node->nodeValue;
-                        // Utilizar a função utf8_decode para tratar os caracteres corretamente
-                        $this->Cell(40, 10, utf8_decode($content), 1);
+                    case 'ul':
+                        $this->Ln($this->alturaCell);
+                        $this->processChildren($node);
+                        $this->Ln($this->alturaCell);
+                        break;
+                    case 'li':
+                        $this->SetFont('Arial', '');
+                        $this->Ln($this->alturaCell);
+                        $bullet = chr(149); // Caractere de bullet (•)
+                        $this->Cell(10, $this->alturaCell, $bullet, 0, 0, 'C');
+                        $this->processChildren($node);
+                        $this->Ln($this->alturaCell);
+                        break;
+                    case 'h1':
+                        $this->SetFont('Arial', 'B', 14);
+                        $this->processChildren($node);
+                        $this->SetFont('Arial', '');
                         break;
                     default:
                         $this->processChildren($node);
@@ -105,8 +127,7 @@ if (isset($_POST['div_campos'])) {
                     $cells = $row->getElementsByTagName('td');
                     foreach ($cells as $cell) {
                         $content = htmlspecialchars_decode($cell->nodeValue, ENT_QUOTES);
-                        // Utilizar a função utf8_decode para tratar os caracteres corretamente
-                        $this->Cell(40, 10, utf8_decode($content), 1);
+                        $this->Cell(40, 10, iconv('UTF-8', 'ISO-8859-1', $content), 1, 0, 'C');
                     }
                     $this->Ln();
                 }
@@ -130,8 +151,14 @@ if (isset($_POST['div_campos'])) {
     $html = $_POST['div_campos'];
 
     // Adicione qualquer personalização adicional necessária
-    $pdf->headerText = 'Cabeçalho Personalizado';
-    $pdf->footerText = 'Rodapé Personalizado';
+    $pdf->headerText = 'Cabeçalho';
+    $pdf->footerText = 'Rodapé';
+
+    // Centralizar conteúdo
+    $pdf->SetAutoPageBreak(true, $pdf->alturaBordaRodape);
+    $pdf->SetTopMargin($pdf->margemTopo);
+    $pdf->SetLeftMargin($pdf->margemEsquerda);
+    $pdf->SetRightMargin($pdf->margemDireita);
 
     // Processar e gerar o conteúdo HTML no PDF
     $pdf->HTMLContent($html);
@@ -140,6 +167,7 @@ if (isset($_POST['div_campos'])) {
     $pdf->Output();
 }
 ?>
+
 
 
 
@@ -258,7 +286,214 @@ if (isset($_POST['div_campos'])) {
     </div><!-- fim div_campos -->
     <!-- <div id="div_campos" class="col-md-12">oi eu sou o goku</div> -->
     <button href="#" type="button" id="btn-print" class="btn btn-default"><i class="fas fa-download"></i> Baixar PDF</button>
+    <style>
+        /* Consulta Margem de Consignação
+----------------------------------------------------------------------------------------------------*/
+        /* Estilo geral */
+        .cards {
+            border-radius: 8px;
+        }
 
+        .cards .vr-texto {
+            padding: 4px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .cards .vr-fundo {
+            background-color: #dfdddd;
+            border-radius: 10px;
+        }
+
+        /* Feedback positivo */
+        .vr-ok {
+            padding: 4px;
+            color: #049413;
+            font-weight: 700;
+        }
+
+        .cards .vr-positivo {
+            color: #049413;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        /* Feedback negativo */
+        .vr-negat {
+            padding: 4px;
+            color: #FF0303;
+            font-weight: 700;
+        }
+
+        /* Margem utilizada */
+        .margem-utilizada {
+            font-weight: 700;
+        }
+
+        /* Estilo de lista */
+        .cards .ul-black {
+            line-height: 7;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cards .ul-black-1 {
+            line-height: 0;
+            padding: 0;
+            font-weight: 700;
+            margin-bottom: 4rem;
+        }
+
+        .ul-margem {
+            padding: 0;
+        }
+
+        /* Saldo de margem */
+        .cards .saldo-margem {
+            font-weight: 700;
+            line-height: 3;
+            text-transform: uppercase;
+        }
+
+        /* Layout de tabela */
+        .td-left {
+            float: left;
+        }
+
+        .td-right {
+            float: right;
+        }
+
+        .three {
+            background: #E0EFFC;
+            color: #1384AD;
+        }
+
+        .td-body,
+        .td-head {
+            border: solid 1px transparent;
+            border-style: solid none;
+        }
+
+        .td-head {
+            background-color: #71B5CE;
+            color: white;
+        }
+
+        .td-body:first-child,
+        .td-head:first-child,
+        .titulo-td:first-child {
+            border-left-style: solid;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .td-body:last-child,
+        .td-head:last-child,
+        .titulo-td:last-child {
+            border-right-style: solid;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .td1 {
+            background: #ECF6FE;
+        }
+
+        .td2 {
+            background: #E0EFFC;
+        }
+
+        /* Estilo final */
+        .div-final {
+            background-color: #dfdddd;
+            border-radius: 10px;
+        }
+
+        /* Componentes de painel */
+        .panel-primary,
+        .panel-group {
+            width: 100%;
+        }
+
+        .panel-primary>.panel-heading {
+            background-color: #1384AD;
+        }
+
+        .panel-body {
+            width: 100%;
+        }
+
+        /* Alinhamento de texto */
+        .texto-esquerda {
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .texto-direita {
+            text-align: right;
+        }
+
+        /* Aviso de margem */
+        .aviso-margem {
+            background-color: #1384AD;
+            font-size: 13px;
+            padding: 9px 7px 1px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Informações adicionais */
+        .table-responsive .info {
+            color: #1384AD;
+            font-weight: 400;
+            border-radius: 8px;
+        }
+
+        /* Título da tabela */
+        .titulo-td {
+            color: white;
+            font-weight: 700;
+            background: #1384AD;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .sub-aviso {
+            font-size: 13px;
+            font-weight: 700;
+
+        }
+
+        .mensagem {
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #a2dbf0;
+        }
+
+        .navbar-fixed-top {
+            position: sticky;
+            top: 0;
+            z-index: 1000000;
+        }
+
+        .fixed-dados {
+            top: 145px;
+            background-color: #fdfdfd;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-fixed-top {
+                position: relative;
+            }
+
+            .fixed-dados {
+                top: 0;
+            }
+        }
+    </style>
     <script>
         document.getElementById('btn-print').addEventListener('click', function() {
             var div_campos = document.getElementById('div_campos').innerHTML;
@@ -271,9 +506,14 @@ if (isset($_POST['div_campos'])) {
                     var blob = new Blob([xhr.response], {
                         type: 'application/pdf'
                     });
+
+                    var currentDate = new Date();
+                    var dateString = currentDate.toISOString().split('T')[0];
+                    var fileName = 'Consulta de Margem de Consignação ' + dateString + '.pdf';
+
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    link.download = 'nome_arquivo.pdf';
+                    link.download = fileName;
                     link.click();
                 }
             };
