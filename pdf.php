@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
+
 if (isset($_POST['div_campos'])) {
     require('FPDF/fpdf.php');
 
@@ -26,14 +28,17 @@ if (isset($_POST['div_campos'])) {
             $this->SetY(-$this->alturaBordaRodape);
             $this->SetFont('Arial', 'I', 8);
             $this->Cell(0, 10, utf8_decode($this->footerText), 0, 0, 'C');
-            $this->Cell(0, 10, utf8_decode(date('d/m/Y H:i:s') . ' Página ' . $this->PageNo() . ' de ' . $this->AliasNbPages()), 0, 0, 'L');
-            $this->Cell(0, 10, utf8_decode('http://www.infoconsig.com.br'), 0, 0, 'R');
+            $this->Cell(0, 10, date('d/m/Y H:i:s') . ' Página ' . $this->PageNo() . ' de ' . $this->AliasNbPages(), 0, 0, 'L');
+            $this->Cell(0, 10, 'http://www.infoconsig.com.br', 0, 0, 'R');
         }
 
         function HTMLContent($html)
         {
             $dom = new DOMDocument();
-            $dom->loadHTML($html);
+            $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+            // Definir o conjunto de caracteres ao carregar o HTML
+            $dom->encoding = 'UTF-8';
 
             $body = $dom->getElementsByTagName('body')->item(0);
             $this->processNode($body);
@@ -42,6 +47,7 @@ if (isset($_POST['div_campos'])) {
         function processNode($node)
         {
             if ($node->nodeType === XML_TEXT_NODE) {
+                // Utilizar a função utf8_decode para tratar os caracteres corretamente
                 $this->Write($this->alturaCell, utf8_decode($node->nodeValue));
             } elseif ($node->nodeType === XML_ELEMENT_NODE) {
                 $tag = strtolower($node->nodeName);
@@ -70,6 +76,11 @@ if (isset($_POST['div_campos'])) {
                         $this->HTMLTable($node->C14N());
                         $this->isTable = false;
                         break;
+                    case 'td':
+                        $content = $node->nodeValue;
+                        // Utilizar a função utf8_decode para tratar os caracteres corretamente
+                        $this->Cell(40, 10, utf8_decode($content), 1);
+                        break;
                     default:
                         $this->processChildren($node);
                         break;
@@ -80,7 +91,11 @@ if (isset($_POST['div_campos'])) {
         function HTMLTable($html)
         {
             $dom = new DOMDocument();
-            $dom->loadHTML($html);
+            $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+
+            // Definir o conjunto de caracteres ao carregar o HTML
+            $dom->encoding = 'UTF-8';
+
             $tables = $dom->getElementsByTagName('table');
 
             foreach ($tables as $table) {
@@ -89,7 +104,8 @@ if (isset($_POST['div_campos'])) {
                 foreach ($rows as $row) {
                     $cells = $row->getElementsByTagName('td');
                     foreach ($cells as $cell) {
-                        $content = $cell->nodeValue;
+                        $content = htmlspecialchars_decode($cell->nodeValue, ENT_QUOTES);
+                        // Utilizar a função utf8_decode para tratar os caracteres corretamente
                         $this->Cell(40, 10, utf8_decode($content), 1);
                     }
                     $this->Ln();
@@ -105,29 +121,23 @@ if (isset($_POST['div_campos'])) {
         }
     }
 
-    $conteudo = $_POST['div_campos'];
-
-    $pdf = new CustomPDF('L', 'mm', 'A4');
-    $pdf->headerText = 'Cabeçalho';
-    $pdf->footerText = 'Rodapé';
-    $pdf->margemEsquerda = 7;
-    $pdf->margemDireita = 10;
-    $pdf->margemTopo = 10;
-    $pdf->alturaCell = 4;
-    $pdf->linhaCabecalho_01 = 0;
-    $pdf->alturaBordaRodape = 13;
-
-    $pdf->AliasNbPages();
-    $pdf->SetMargins($pdf->margemEsquerda, $pdf->margemTopo, $pdf->margemDireita);
+    // Exemplo de uso:
+    $pdf = new CustomPDF();
+    $pdf->SetFont('Arial', '', 10);
     $pdf->AddPage();
-    $pdf->SetFont('Arial', '', 12);
 
-    $pdf->HTMLContent($conteudo);
+    // HTML com os campos preenchidos
+    $html = $_POST['div_campos'];
 
-    ob_clean();
-    $nomeArquivo = 'Consulta-de-Margem-de-Consignacao' . date('Ymd') . '.pdf';
-    $pdf->Output($nomeArquivo, 'D');
-    exit;
+    // Adicione qualquer personalização adicional necessária
+    $pdf->headerText = 'Cabeçalho Personalizado';
+    $pdf->footerText = 'Rodapé Personalizado';
+
+    // Processar e gerar o conteúdo HTML no PDF
+    $pdf->HTMLContent($html);
+
+    // Gerar saída do PDF
+    $pdf->Output();
 }
 ?>
 
