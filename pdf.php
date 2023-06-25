@@ -67,22 +67,32 @@ if (isset($_POST['div_campos'])) {
                         break;
                     case 'table':
                         $this->isTable = true;
-                        $this->processChildren($node);
+                        $this->HTMLTable($node->C14N());
                         $this->isTable = false;
                         break;
-                    case 'tr':
-                        $this->Ln();
-                        $this->processChildren($node);
-                        $this->Ln();
-                        break;
-                    case 'td':
-                        $this->Cell(40, 10, utf8_decode($node->nodeValue), 1);
-                        break;
-                        // Adicione mais casos para outras tags HTML, se necessário
-
                     default:
                         $this->processChildren($node);
                         break;
+                }
+            }
+        }
+
+        function HTMLTable($html)
+        {
+            $dom = new DOMDocument();
+            $dom->loadHTML($html);
+            $tables = $dom->getElementsByTagName('table');
+
+            foreach ($tables as $table) {
+                $rows = $table->getElementsByTagName('tr');
+                $this->Ln();
+                foreach ($rows as $row) {
+                    $cells = $row->getElementsByTagName('td');
+                    foreach ($cells as $cell) {
+                        $content = $cell->nodeValue;
+                        $this->Cell(40, 10, utf8_decode($content), 1);
+                    }
+                    $this->Ln();
                 }
             }
         }
@@ -120,6 +130,7 @@ if (isset($_POST['div_campos'])) {
     exit;
 }
 ?>
+
 
 
 
