@@ -12,6 +12,7 @@ if (isset($_POST['div_campos'])) {
         public $alturaCell = 4;
         public $linhaCabecalho_01 = 0;
         public $alturaBordaRodape = 13;
+        public $isTable = false;
 
         function Header()
         {
@@ -36,6 +37,7 @@ if (isset($_POST['div_campos'])) {
             $tables = $dom->getElementsByTagName('table');
 
             foreach ($tables as $table) {
+                $this->isTable = true;
                 $rows = $table->getElementsByTagName('tr');
                 $this->Ln();
                 foreach ($rows as $row) {
@@ -46,6 +48,60 @@ if (isset($_POST['div_campos'])) {
                     }
                     $this->Ln();
                 }
+            }
+        }
+
+        function HTMLContent($html)
+        {
+            $dom = new DOMDocument();
+            $dom->loadHTML($html);
+
+            $this->isTable = false;
+            $body = $dom->getElementsByTagName('body')->item(0);
+            $this->processNode($body);
+        }
+
+        function processNode($node)
+        {
+            if ($node->nodeType === XML_TEXT_NODE) {
+                if (!$this->isTable) {
+                    $this->Write($this->alturaCell, utf8_decode($node->nodeValue));
+                }
+            } elseif ($node->nodeType === XML_ELEMENT_NODE) {
+                $tag = strtolower($node->nodeName);
+
+                switch ($tag) {
+                    case 'br':
+                        $this->Ln($this->alturaCell);
+                        break;
+                    case 'b':
+                        $this->SetFont('Arial', 'B');
+                        $this->processChildren($node);
+                        $this->SetFont('Arial', '');
+                        break;
+                    case 'i':
+                        $this->SetFont('Arial', 'I');
+                        $this->processChildren($node);
+                        $this->SetFont('Arial', '');
+                        break;
+                    case 'u':
+                        $this->SetFont('Arial', 'U');
+                        $this->processChildren($node);
+                        $this->SetFont('Arial', '');
+                        break;
+                        // Adicione mais casos para outras tags HTML, se necessário
+
+                    default:
+                        $this->processChildren($node);
+                        break;
+                }
+            }
+        }
+
+        function processChildren($node)
+        {
+            foreach ($node->childNodes as $childNode) {
+                $this->processNode($childNode);
             }
         }
     }
@@ -67,9 +123,7 @@ if (isset($_POST['div_campos'])) {
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 12);
 
-    if (strpos($conteudo, '<table') !== false) {
-        $pdf->HTMLTable($conteudo);
-    }
+    $pdf->HTMLContent($conteudo);
 
     ob_clean();
     $nomeArquivo = 'Consulta-de-Margem-de-Consignacao' . date('Ymd') . '.pdf';
@@ -77,6 +131,8 @@ if (isset($_POST['div_campos'])) {
     exit;
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
