@@ -13,7 +13,7 @@ if (isset($_POST['div_campos'])) {
         public $margemTopo = 10;
         public $alturaCell = 4;
         public $linhaCabecalho_01 = 0;
-        public $alturaBordaRodape = 13;
+        public $alturaBordaRodape = 15;
         public $isTable = false;
 
         function Header()
@@ -30,15 +30,17 @@ if (isset($_POST['div_campos'])) {
             $this->SetFont('Arial', 'I', 8);
 
             $this->SetX($this->margemEsquerda);
-            $this->Cell(0, 10, date('d/m/Y H:i:s'), 0, 0, 'L');
+            date_default_timezone_set('America/Sao_Paulo');
+            $this->Cell(0, 18, date('d/m/Y H:i:s'), 0, 0, 'L');
 
             $this->SetX(($this->margemEsquerda + $this->margemDireita) / 2);
             $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->footerText), 0, 0, 'C');
 
             $this->SetX($this->margemDireita);
-            $this->Cell(0, 0, iconv('UTF-8', 'ISO-8859-1', 'Página') . ' ' . $this->PageNo() . ' de ' . $this->AliasNbPages(), 0, 0, 'C');
+            $this->AliasNbPages();
+            $this->Cell(0, 18, iconv('UTF-8', 'ISO-8859-1', 'Página') . ' ' . $this->PageNo() . ' de ' . '{nb}', 0, 0, 'C');
 
-            $this->Cell(0, 10, 'http://www.infoconsig.com.br', 0, 0, 'R');
+            $this->Cell(0, 18, 'http://www.infoconsig.com.br', 0, 0, 'R');
         }
 
         function HTMLContent($html)
@@ -474,11 +476,8 @@ if (isset($_POST['div_campos'])) {
 <script>
     $(document).ready(function() {
         // mensagem
-        const alertElement = $('#alert');
-        const defaultBtn = $('.btn.btn-default');
-        alertElement.hide();
-        $('#alert .close').click(() => alertElement.hide());
-        defaultBtn.click(() => alertElement.show());
+        $('.mensagem .close').click(() => $('.mensagem').hide());
+        $('.btn .btn-default').click(() => $('.mensagem').show());
         // pdf
         document.getElementById('btn-print').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
