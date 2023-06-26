@@ -476,9 +476,8 @@ if (isset($_POST['div_campos'])) {
 <script>
     $(document).ready(function() {
         // mensagem
-        $('.mensagem .close').click(() => $('.mensagem').hide());
-        $('.btn .btn-default').click(() => $('.mensagem').show());
-        // pdf
+        $('#alert .close').click(() => $('#alert').hide());
+        $('#btn-print').click(() => $('.mensagem').show()); // pdf
         document.getElementById('btn-print').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', window.location.href);
