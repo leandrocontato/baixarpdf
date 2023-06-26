@@ -1,0 +1,68 @@
+/* CSS Document
+Desenvolvido por: Jefferson Siqueira
+Desenvolvido pela empresa: Sttórico Sistemas LTDA
+VersÃ£o 3.5 (Ajustado para o Sistema)
+*/
+/* `jform
+----------------------------------------------------------------------------------------------------*/
+
+dl.jform dt,
+dl.jform dd{
+	float: left;
+	padding: 2px 0;
+	min-height: 23px;
+	line-height: 23px;
+}
+	dl.jform dt.jtitle{
+		font-weight: bold;
+		margin: 10px 0;
+	}
+	dl.jform dt.jlabel{
+		clear: left;
+		width: 220px;
+	}
+	dl.jform dt.jlabel2{
+		margin-left: 30px;
+		width: 220px;
+	}
+	dl.jform dd{
+		margin-bottom: 7px;
+	}
+		dl.jform dd input{
+			float: left;
+		}
+		dl.jform dd input[type="submit"],
+		dl.jform dd button{
+			margin-top: 0;
+		}
+	/* 2 mcolunas - 2 mcolumns */
+	dl.jform.mcolunas2 dt.jlabel{
+		width: 140px;
+	}
+	/* 2 pcolunas - 2 pcolumns */
+	dl.jform.pcolunas2 dt.jlabel,
+	dl.jform.pcolunas2 dt.jlabel2{
+		width: 120px;
+	}
+	/* todos */
+	dl.jform .jbutton,
+	dl.jform .jclear{
+		clear: both;
+		float: none;
+	}
+	dl.jform .bgColor{
+		background-color: #fdfaec;
+	}
+	dl.jform .jclear,
+	dl.jform.colunas2 .jclear,
+	dl.jform.pcolunas2 .jclear{
+		width: 100%;
+	}
+.filtro-customselect dl.jform dt{
+	width: 285px;
+}
+
+table.jform td{
+	min-height: 23px;
+	line-height: 23px;
+}

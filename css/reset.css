@@ -1,0 +1,240 @@
+/* CSS Document
+Desenvolvido por: Jefferson Siqueira
+Desenvolvido pela empresa: Sttórico Sistemas LTDA
+VersÃ£o: 5.0.0
+*/
+
+/* `XHTML, HTML4, HTML5 Reset
+----------------------------------------------------------------------------------------------------*/
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del,
+details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header,
+hgroup, hr, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, meter, nav, object, ol, output, p, pre, progress, q,
+rp, rt, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr,
+tt, u, ul, var, video, xmp {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+html {
+	overflow:auto;
+}
+html, body {
+	height: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, div, video, audio {
+	position: relative;
+	display: block;
+}
+a {
+	color: #333; /* cor padrÃ£o */
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+:focus {
+	outline: none;
+}
+b, strong {
+	font-weight: bold;
+}
+img {
+	color: transparent;
+	font-size: 0;
+	vertical-align: middle;
+	-ms-interpolation-mode: bicubic;/* Para o IE */
+}
+li {
+	display: list-item;/* Para o IE6 + IE7 */
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+th td, tr td, caption {
+	font-weight: normal;
+	padding: 5px;
+}
+q {
+	quotes: none;
+}
+q:before, q:after {
+	content: '';
+	content: none;
+}
+sub, sup, small {
+	font-size: 75%;
+}
+sub, sup {
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sub {
+	bottom: -0.25em;
+}
+sup {
+	top: -0.5em;
+}
+svg {
+	overflow: hidden;/* Para IE9 */
+}
+
+button{
+	cursor: pointer;
+}
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+body {
+	width: 100%;
+	font: 13px / 1.5 Arial, Helvetica, sans-serif;
+	background-color: #FDFDFD;
+	color: #333;
+}
+pre, code {
+	font-family: 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+}
+hr {
+	border: 0 #ccc solid;
+	border-top-width: 1px;
+	clear: both;
+	height: 0;
+}
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {font-size: 25px;}
+h2 {font-size: 23px;}
+h3 {font-size: 21px;}
+h4 {font-size: 19px;}
+h5 {font-size: 17px;}
+h6 {font-size: 15px;}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+	list-style: none; /* decimal */
+}
+ul {
+	list-style: none; /* disc */
+}
+li {
+	margin-left: 0; /* 30px */
+}
+p, dl, hr, h1, h2, h3, h4, h5, h6, pre, address, fieldset, figure {
+	margin-bottom: 10px;
+}
+
+/* `Page
+----------------------------------------------------------------------------------------------------*/
+
+#page, #div_tudo{
+	/*max-width:1920px;*/
+	min-height: 100%;
+}
+* html #page, * html #div_tudo{
+	height: 100%;
+}
+
+/* `Class
+----------------------------------------------------------------------------------------------------*/
+.block{
+	display: block;
+}
+.inline {
+	display: inline!important;
+}
+.none{
+	display: none;
+}
+.absolute{
+	position: absolute;
+}
+.fixed{
+	position: fixed;
+}
+.relative{
+	position: relative;
+}
+.left, .j-left{
+	float: left;
+}
+.right, .j-right{
+	float: right;
+}
+.list-none{
+	list-style: none;
+}
+.list-none li{
+	margin-left: 0;
+}
+.j-color--fff,
+a.j-color--fff{
+	color: #fff;
+}
+
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+.clear,
+.clearfloat{
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix:before,
+.clearfix:after{
+	content: '.';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0;
+}
+
+.clearfix:after{
+	clear: both;
+}
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
+
+.clearfix{
+	zoom: 1;
+}
+
+/* selo */
+#ssltrust{
+	width: 100px!important;
+	height: 85px!important;
+	padding: 0;
+	float:right;
+	line-height: normal;
+	margin-left: 5px;
+	margin-right: 15px;
+}
+#ssltrust a{
+	display: block;
+	float: none!important;
+	margin: 0!important;
+	padding: 0!important;
+	background: none!important;
+	border: 0!important;
+}
+#ssltrust img{
+	margin-top: -8px;
+}

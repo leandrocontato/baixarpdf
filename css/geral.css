@@ -1,0 +1,301 @@
+@charset "UTF-8";
+
+/* LOADER PARA CARREGAMENTO DE DADOS */
+
+.NR_PARCELA, .VL_PARCELA, #NR_PARCELA,
+.num, .money, .money2, .numtot{
+	text-align: right;
+}
+
+input[readonly="readonly"],
+input[disabled="disabled"]{
+	background-color: #EFEFEF;
+}
+
+input[type='checkbox'],
+.semborda {
+	border: none;
+	background: none;
+}
+
+#DS_TIPO_DOMINIO,
+#DS_CHAVE {
+	text-transform: uppercase;
+}
+
+.hid {
+	display: none;
+}
+
+img[id|="__Error"] {
+	position: absolute;
+}
+
+tr.linha {
+	border-bottom: solid 1px #ccc;
+}
+tr.rowDestakText{
+	color: #C00 !important;
+}
+
+a{
+	text-decoration: underline;
+}
+a, a.cinza:hover {
+	color: #3d5a6e;
+}
+a:hover, a.cinza {
+	color: #333;
+	text-decoration: none;
+}
+a.cinza, a.seta {
+	text-decoration: none;
+}
+a.seta {
+	background: url('../image/menu_sub-seta_home.gif') left no-repeat;
+	text-align: left;
+	padding-left: 10px;
+	color: #4b371f;
+}
+a.seta:hover {
+	color: #f30;
+}
+
+.total_grupo{
+	font-weight: 700;
+}
+
+.focused {
+    background-color: #abcdef !important;
+}
+.focusedSubmit {
+	background-color: #9CC !important;
+}
+/* ----------- FECHAMENTO DE DESCONTOS PARA A FOLHA RH ------------- */
+#paginacao .pagination{
+	top: 170px;
+	left: 560px;
+}
+
+#listagemDados .carregaTabela{
+	background-color: #F2F2F2;
+	overflow: hidden;
+	width: 100%;
+}
+#listagemDados table{
+	top: 0;
+}
+.bg_tr,
+#listagemDados table .header td{
+	background-color: #FFEABF;
+}
+#listagemDados .seguraPaginacao li{
+	float: left;
+	display: block;
+	padding: 3px 5px;
+	background: url('../image/bg_header.jpg');
+	margin: 4px;
+	color: #fff;
+	font-size: 12px;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+#listagemDados .seguraPaginacao li.pagefirst:hover,
+#listagemDados .seguraPaginacao li.pageant:hover,
+#listagemDados .seguraPaginacao li.pageprox:hover,
+#listagemDados .seguraPaginacao li.pagelast:hover{
+	background: url('../image/bg_title.jpg');
+	cursor: pointer;
+}
+#listagemDados .seguraPaginacao li a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 12px;
+}
+#listagemDados .seguraPaginacao li input.paginaAtual{
+	width: 30px;
+	height: 12px;
+	text-align: center;
+}
+
+.selector {
+	color: black;
+	background-color: white;
+}
+
+
+/* Config buttons - Estilização de botões
+----------------------------------------------------------------------------------*/
+.detalhe_cartao{
+	display: block;
+	padding: 0 0 0 30px;
+	height: 24px;
+	line-height: 24px;
+	background: url('../image/lupa.png') no-repeat;
+}
+
+/* solicitações */
+.resumo_margem #VL_MARGEM_USO_EXCEDENTE,
+.resumo_margem #VL_MARGEM_TOTAL,
+.resumo_margem #VL_MARGEM_UTILIZADA,
+.resumo_margem #VL_MARGEM_DISPONIVEL,
+.resumo_margem #VL_PARCELA,
+.resumo_margem #SOMA,
+.resumo_margem #SOLICITACAO{
+	font-size: 18px;
+}
+
+/* Config tables - configuração das tabelas
+----------------------------------------------------------------------------------*/
+#load_table{
+	padding: 0 5px;
+}
+.msg_filter {
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	color: #FFF !important;
+	font-weight: 700;
+	height: 100% !important;
+	padding: 10px;
+	width: 200px;
+	text-align: center;
+
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+}
+
+.msg_title {
+	background: url('../image/novo/bg_aba2.png') #0052BC repeat-x;
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	color: #FFF !important;
+	font-weight: 700;
+	height: 100% !important;
+	padding: 10px;
+	text-align: left;
+
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+}
+.detalheViewTable{
+	background-color: #ededed;
+}
+
+table.sombra{
+	-webkit-box-shadow: 0 1px 1px #ccc;
+	-moz-box-shadow: 0 1px 1px #ccc;
+	box-shadow: 0 1px 1px #ccc;
+}
+.tbs_fechamento{
+	margin-left: 5px;
+}
+.tb_ListagemEtapaFechamentoFolha.tbs_fechamento tr{
+	background-color: #fff;
+}
+.tb_ListagemEtapaFechamentoFolha.tbs_fechamento td{
+	padding: 3px 0;
+}
+.bd_table, .bd_table td,
+.tbs_fechamento,
+.tb_ListagemEtapaFechamentoFolha.tbs_fechamento td{
+	border: 1px solid #efefef;
+}
+	.bg_tr_effect td{
+		border-color: #E07604;
+	}
+
+.bd_table td a{
+	font-size: 13px;
+}
+.tr_bg_total{
+	background-color: #C9E6FC;
+	color: #004689;
+}
+
+.vtop{
+	vertical-align: top;
+}
+
+td.data strong{
+	font-size: 10px;
+}
+.paddingTable .row0 td,
+.paddingTable .row1 td{
+	padding-top: 8px!important;
+	padding-bottom: 8px!important;
+}
+
+/* Admin Cartões
+----------------------------------------------------------------------------------*/
+.cx_motivo{
+	position: absolute;
+	margin-top: 0;
+	margin-right: 5px;
+	*margin-top: 15px; /* IE 7 */
+	*right: 95px; /* IE 7 */
+	padding: 6px 8px;
+	max-width: 300px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	text-align: justify;
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	-webkit-box-shadow: 0 1px 1px #aaa;
+	-moz-box-shadow: 0 1px 1px #aaa;
+	box-shadow: 0 1px 1px #aaa;
+
+	z-index: 100;
+}
+
+
+/* Styles Forms
+----------------------------------------------------------------------------------*/
+input[type="radio"],
+input[type="checkbox"]{
+	border: none;
+}
+
+/* input */
+.campo_focus{
+	background-color: #FFF8E8!important;
+}
+
+
+/* Conteudo do Sistema
+----------------------------------------------------------------------------------*/
+#div_campos {
+	margin-bottom: 5px;
+	padding: 0 15px;
+}
+
+#listaservidores{
+	margin-bottom: 15px;
+	width: 100%;
+}
+.servidorLista{
+	padding: 5px;
+	background-color: #fff;
+	border:1px solid #ccc;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+	.servidorLista select{
+		width: 100%;
+	}
+#servidorLista{
+	border: 0;
+	background-color: transparent;
+}
+#servidorLista.campo_focus{
+	background-color: #fff!important;
+}
+/* fim */

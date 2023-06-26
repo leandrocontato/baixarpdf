@@ -1,0 +1,401 @@
+:root{
+	--cem-porcento: 100%;
+
+}
+
+html, body,
+#div_tudo{
+	height: var(--cem-porcento);
+}
+body{
+	background-color: #fdfdfd; /* Nova cor do fundo / New background color */
+}
+/*.j-color--fff, a.j-color--fff,
+a[data-title]:hover::after,*/
+a,
+a.btn-link{
+	color: #1384AD; /* Nova cor dos links / New link color */
+}
+a:hover,
+a.btn-link:hover{
+	color: #255471;
+}
+#loginButton{
+	color: #fff;
+}
+#div_tudo{
+	min-height: 900px;
+}
+img.logo{
+	display: block;
+	margin: 30px auto;
+}
+
+.j-left{
+	float: left;
+}
+
+.j-right{
+	float: right;
+}
+.j-bt--recupera-senha{
+	text-decoration: underline;
+	margin-left: 8px;
+}
+.j-bt--recupera-senha:hover,
+.j-bt--primeiro-acesso a:hover,
+#footer a.j-link{
+	text-decoration: none;
+}
+#POSICAO_CHAVE,
+#POSICAO_CHAVE-1,
+#POSICAO_CHAVE-3{
+	text-align: center;
+	color: #f00;
+}
+
+
+/*******************************************************************************
+	Content Menu
+*******************************************************************************/
+
+	#big_hover{
+		width: 100px;
+	}
+	#big_hover .img, a[data-title]:hover::after{
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	#big_hover .img:hover, #msg_process_report .loading{
+		z-index: 9999;
+	}
+	#big_hover .img:hover{
+		transform: scale(6);
+		-moz-transform: scale(6);
+		-webkit-transform: scale(6);
+		-o-transform: scale(6);
+
+		transition: 0.3s ease;
+		-o-transition: 0.3s ease;
+		-moz-transition: 0.3s ease;
+		-webkit-transition: 0.3s ease;
+	}
+	#big_hover img{
+		width: 90%;
+		border: 1px solid #ccc;
+
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+	}
+	#big_hover .img:hover img{
+		box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+		-moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+		-webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+	}
+
+	.cx_desc_servfacil{
+		line-height: 14px;
+		margin-left: 32px;
+	}
+
+/* Login
+----------------------------------------------------------------------------------------------------*/
+	.j-bt--primeiro-acesso{
+		margin-top: 5px;
+		transition: 0.2s linear;
+		background-color: transparent;
+		border-radius: 4px;
+		font-size: 1.2em;
+		text-align: center;
+	}
+	.j-bt--primeiro-acesso a{
+		padding: 15px 5px;
+		display: block;
+		text-decoration: underline;
+	}
+	
+	#msg_process_report .loading{
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+	/*
+		Nova cor das labels, novo formato do input respeitando o design do app e nova cor e formato do botão de interrogação
+		New labels color, new input format respecting the app design and new color and format of the interrogation button  
+	*/
+	
+	label{
+		color: #255471;
+	}
+	.j-new-input{
+		height: 56px;
+		font-size: 16px;
+		border: 0;
+		border-bottom: 1px solid #1384AD;
+		border-radius: 25px 25px 0 0;
+		background-color: #f2f2f2;
+	}
+
+	.btn-j-user{
+		height: 56px;
+		border-radius: 0 25px 0 0;
+		background-color: #1384AD;
+		border-color: #1384AD;
+		color: #fff;
+	}
+	.btn-j-user:hover{
+		background-color: #255471;
+		color: #fff;
+	}
+	
+/* Captchas
+----------------------------------------------------------------------------------------------------*/
+	.cx_captcha{
+		clear: both;
+	}
+	.captcha{
+		position: relative;
+		float: left;
+		overflow: hidden;
+		border: 1px solid #ccc;		
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;		
+	}
+	input.dig_captcha{
+		text-transform: uppercase;
+	}		
+	input.dig_captcha{
+		width: 50%;
+		color: #0A0;
+		font-size: 16px;
+		font-weight: bold; 
+	}		
+/* end Captchas
+----------------------------------------------------------------------------------------------------*/
+	#loginButton{
+		transition: 0.2s linear;
+		padding: 11px 12px;
+		width: var(--cem-porcento);
+		font-size: 1.4em;
+		text-transform: none;
+		background-color: #1384AD; /* Nova cor do botão e bordas arredondas / New color to button and rounded border  */
+		border-radius: 50px;
+		
+	}
+
+	.baseLinkButton{
+		background-color: #1384AD; /* Nova cor do botão e bordas arredondas / New color to button and rounded border  */
+		border-radius: 50px;
+		padding: 8px 16px;
+	}
+
+	#loginButton:hover,
+	.baseLinkButton:hover {
+		background-color: #255471; /* Nova cor do hover do botão / New hover color to button */
+	}
+
+	#conteudo{
+		min-height: 863px;
+	}
+
+	/* moldal */
+	#msg_process_report .fundo{
+		width: var(--cem-porcento);
+		height: var(--cem-porcento);
+		background-color: #888;
+		opacity: 0.3;
+		z-index: 9998;
+	}
+		#msg_process_report .loading{
+			text-align: center;
+			margin-top: -100px;
+			margin-left: -100px;
+			left: 50%;
+			top: 40%;
+			width: 200px;
+			height: 200px;
+			background-color: #fff;
+			font-size: 15px;
+		}
+			#msg_process_report .loading img{
+				width: 70%;
+			}
+		#msg_process_report .fundo,
+		#msg_process_report .loading{
+			position: fixed;
+		}
+
+	/* Footer / Rodapé
+----------------------------------------------------------------------------------------------------*/
+	#footer{
+		padding: 0 15px;
+		width: var(--cem-porcento);
+		height: 110px;
+		background-color: #1384AD; /* Nova cor de fundo / New background color */
+		color: #fff;
+	}
+		#footer .atendimento,
+		#footer .atendimento2{
+			padding-top: 30px;
+			padding-left: 10px;
+			width: 200px;
+			height: 90px;
+			font-size: 0.95em;
+		}
+		#footer .atendimento2{
+			width: 170px;
+		}
+		#footer a.j-link{
+			margin-left: 10px;
+			padding: 0 20px;
+			line-height: 110px;
+		}
+		#footer a.j-link--contato{
+			font-size: 12px;
+			font-weight: 700;
+		}
+		#footer a.j-link--contato:hover{
+			background-color: #004EA1;
+		}
+
+		#footer .torneira{
+			margin-right: 25px;
+			width: 229px;
+			height: 110px;
+			background: url('../image/novo/inef-rodape.png') center no-repeat;
+		}
+
+		#sttorico,
+		#educonsig{
+			margin: 25px 15px 0 0;
+		}
+		#educonsig{
+			margin-top: 10px;
+		}
+
+		#ssltrust {
+			display: inline-block;
+			width: 120px;
+			height: 32px;
+			margin-top: 20px;
+			margin-right: 15px;
+			overflow: hidden;
+		}
+		#ssltrust a{
+			display: block;
+		}
+
+			
+/* POPOVER ---------------------------------------------------*/
+html, body, #div_tudo, #big_hover, .j-bt--primeiro-acesso a, #sttorico, #educonsig, a[data-title]{
+	position: relative;
+}
+
+a[data-title]:hover::after{
+	content: attr(data-title);
+	max-width: 300px;
+	padding: 5px 10px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    background-color: #337ab7;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+   	border-radius: 6px;
+	line-break: auto;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+	z-index: 999;
+}
+#educonsig[data-title]:hover::after{
+	margin: 0;
+	top: -80px;
+}
+
+  
+/* @media 
+----------------------------------------------------------------------------------------------------*/
+@media screen and (max-width: 1145px) {
+	#footer{
+		height: 200px;
+	}
+}
+@media screen and (max-width: 767px){
+	.j-bt--primeiro-acesso a {
+		padding: 15px 5px;
+	}
+		.j-bt--primeiro-acesso a i{
+			top: 9px;
+		}
+	#footer .torneira,
+	#footer .atendimento{
+		display: none;
+	}
+	#footer{
+		height: 120px;
+	}
+}
+@media screen and (max-width: 730px) {
+	#footer a.j-link{
+		width: 47%;
+		height: 80px;
+		line-height: 80px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	}
+	#footer a.j-link--contato{
+		font-size: 1.5em;
+		text-align: center;
+	}
+	#footer .atendimento2{
+		display: none;
+	}
+}
+@media screen and (max-width: 519px) {
+	#conteudo{
+		padding-bottom: 50px;
+	}
+	#footer a.j-link, #sttorico,
+	#footer div.j-right.selo-logo{
+		width: var(--cem-porcento);
+	}
+	#footer a.j-link{
+		margin: 0;
+	}
+	#sttorico,
+	#footer div.j-right.selo-logo{
+		text-align: center;
+	}
+	#ssltrust{
+		float: right;
+	}
+	#footer{
+		height: 190px;
+	}
+}
+@media screen and (max-width: 470px) {
+	img.logo{
+		width: var(--cem-porcento);
+		max-width: 352px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+	.col-sm-offset-1 {
+		margin-left: 11.333%;
+	}
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+	.col-md-offset-4{
+		margin-left: 30.33333333%;
+	}
+}

@@ -1,0 +1,270 @@
+/*
+
+CSS tela de Login Mobile
+
+*/
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: rgb(36, 101, 158);
+  font-family: Arial;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 90%;
+  margin: 10px auto !important;
+  padding-top: 10px;
+  padding-left: 0px;
+}
+
+.container {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+.formlogin {
+  width: 320px;
+  margin-top: 50px;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px black;
+  text-align: left;
+}
+
+.inputLogin {
+  width: 350px;
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+  color: #000 !important;
+}
+
+div.esqueceu a {
+  color: #fff;
+}
+
+.esqueceu {
+  margin-top: 5px;
+  color: #fff;
+}
+
+.botoes {
+  margin-top: 40px;
+}
+
+/*
+.btn-entrar{
+	width: 120px;
+	height: 30px;
+	margin: 00px auto;
+	padding-top: 10px;
+	border: 2px;
+	font-size: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+	margin-bottom: 70px;
+}*/
+
+#loginButton {
+  background: url(../image/mobile/key-fff.png);
+  background-color: #ee8f00;
+  background-repeat: no-repeat;
+  background-size: 15%;
+  background-position: 5% 50%;
+  width: 130px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn-primeiroAcesso {
+  width: 300px;
+  height: 90px;
+  margin: 50px auto 20px;
+  padding-top: 30px;
+  border: 2px;
+  background: #e19334;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-cartao {
+  width: 300px;
+  height: 90px;
+  margin: 20px auto;
+  padding-top: 30px;
+  border: 2px;
+  background: #e19334;
+  text-align: center;
+  box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.4), 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+#txt-entrar {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+  text-decoration: none;
+  font: bold 14px/20px Helvetica, Arial;
+  margin-bottom: 20px;
+}
+
+#txt-primeiroAcesso {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+  text-decoration: none;
+  font: bold 14px/20px Helvetica, Arial;
+  margin-bottom: 20px;
+}
+
+#txt-cartao {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px black;
+  text-decoration: none;
+  font: bold 14px/20px Helvetica, Arial;
+  margin-bottom: 20px;
+}
+
+.btn-entrar img {
+  padding-left: 15px;
+  height: 20px;
+  float: left;
+}
+
+.btn-primeiroAcesso img {
+  height: 20px;
+  float: left;
+  padding-left: 40px;
+}
+
+.btn-cartao img {
+  height: 20px;
+  float: left;
+  padding-left: 80px;
+}
+/*
+.btn-entrar:hover {
+	box-shadow: 0 2px 0px 0 rgba(255, 255, 255, 0.4), 0 10px 20px 0 rgba(255, 255, 255, 0.1);
+}*/
+
+.btn-primeiroAcesso:hover {
+  box-shadow: 0 2px 0px 0 rgba(255, 255, 255, 0.4),
+    0 10px 20px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-cartao:hover {
+  box-shadow: 0 2px 0px 0 rgba(255, 255, 255, 0.4),
+    0 10px 20px 0 rgba(255, 255, 255, 0.1);
+}
+
+.footer {
+  padding: 0;
+  height: 100px;
+  width: 100%;
+  background: #194687;
+  position: relative;
+  bottom: -23px;
+}
+
+.footer img {
+  height: 60px;
+  padding-top: 20px;
+  margin-left: 25%;
+}
+
+/*
+
+CSS da tela de Primeiro Acesso
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  text-align: center;
+  background-color: #337ab7;
+  color: #fff;
+}
+
+body {
+  margin: 0 auto;
+  background-color: #337ab7 !important;
+}
+
+.titulo {
+  margin: 0 auto;
+  width: 355px;
+  padding-bottom: 20px;
+  padding-left: 15%;
+  font-size: 24px;
+  text-shadow: 1px 1px 2px black;
+  text-transform: uppercase;
+  font-family: Arial;
+  background-color: #337ab7;
+  color: #fff;
+}
+
+div #form-login {
+  width: 355px;
+  margin-left: 15px;
+  background-color: #337ab7;
+  color: #fff;
+}
+
+div .botao {
+  margin-top: 20px;
+}
+
+div input {
+  width: 340px;
+  padding-right: 10px;
+}
+
+div label {
+  text-shadow: 1px 1px 2px black;
+  padding-top: 5px;
+}
+
+div .tipSenha {
+  width: 340px;
+  background: #ddd;
+  color: #000;
+  font-weight: bolder;
+  text-shadow: 1px 1px 2px #fff;
+  text-align: left;
+  font-size: 0.7em;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+div .tipSenha span {
+  margin: 5px 0;
+  padding-left: 10px;
+}
+
+#cartaVisualiza {
+  width: 340px !important;
+  height: 220px !important;
+}
+

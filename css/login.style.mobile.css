@@ -1,0 +1,100 @@
+body-mobile {
+    background: rgb(36, 101, 158);
+    font-family: Arial;
+}    
+
+.flex {
+    display: flex;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 340px;
+}
+
+div#logo img{
+    padding: 15px;
+    max-width: 100%;
+}
+
+.form {
+    padding-top: 40px;
+    font-size: 1em;
+	text-shadow: 1px 1px 2px black;
+}
+
+#usuario input{
+    margin-top: 5px;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+#senha input{
+    margin-top: 5px;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+#senha {
+    padding-top: 10px;
+}
+
+#esqueceu a {
+    color: #fff;
+    padding-top: 10px;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+.coluna {
+    flex-direction: column;
+}
+
+.centro {
+	justify-content: center;
+}
+
+div.botao {
+    padding: 50px 0;
+}
+
+.botao-entrar {
+    background-image: url(../image/mobile/key-fff.png);
+    background-size: 20%;
+    background-position: 5% 50% !important;
+    background-repeat: no-repeat;
+    padding: 10px 30px !important;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: black 1px 1px 2px;
+    display: inline-block;
+    font-size: 1.2em !important;
+    margin: 4px 2px;
+  }
+
+.botao-primeiroAcesso {
+    background-color: #ee8f00;
+    background-image: url(../image/mobile/btn-login-fff.png);
+    background-size: 9%;
+    background-position: 5% 50%;
+    background-repeat: no-repeat;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: black 1px 1px 2px;
+    display: inline-block;
+    font-size: 1.2em !important;
+    margin: 4px 2px;
+}  
+
+.botao1 {
+    border-radius: 4px;
+  }
+
+span {
+    color: #fff;
+}  

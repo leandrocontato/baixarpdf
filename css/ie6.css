@@ -1,0 +1,302 @@
+#div_logo{
+	_top: 0;
+}
+#div_topo{
+	_padding: 12px 10px 8px 0;
+	_height: 75px;
+	_border: none;
+}
+	ul#css3menu{
+		position: relative;
+		_margin-top: 10px;
+	}
+		ul#css3menu li{
+			position: relative;
+		}
+			ul#css3menu li a{
+				_padding: 10px 5px;
+				_font-size: 11px;
+			}
+				ul#css3menu li ul.submenu{
+					_top: 30px;
+				}
+					ul#css3menu li ul.submenu a,
+					ul#css3menu li ul.submenu2 a{
+						_padding: 10px 0 5px;
+					}
+					ul#css3menu li ul.submenu2{
+						_top: 0;
+					}
+				ul#css3menu li.topitem.hover ul.submenu,
+				ul#css3menu li.subitem.hover2 ul.submenu2{
+					_display: block
+				}
+	#div_info_login{
+		_position: relative;
+		_float: right;
+		_width: 320px;
+	}
+		#div_info_login table {
+			_text-align: right;
+		}
+			#div_info_login table *{
+				_color: #fff;
+				_font-size: 10px;
+			}
+		#div_info_login #pop_down{
+			_width: 120px;
+		}
+
+#div_tudo{
+	_width: 1004px;
+}
+
+#conteudo {
+	_height: 600px;
+}
+	#itens{
+		_margin: 5% 0 0 10px;
+	}
+	#itens li{
+		_padding-left: 0;
+		_width: 250px;
+	}
+	#itens li strong{
+		_margin-top: 0;
+		_width: 110px;
+		_font-size: 11px;
+	}
+		#itens li img{
+			width: 100px;
+		}
+	#itens li.title_item{
+		_margin-bottom: 0;
+		_padding-bottom: 0;
+		_height: 10px;
+	}
+	#itens li.clear{
+		_height: 0;
+	}
+
+#div_campos{
+	_padding: 0;
+	_margin-left: 10px;
+	_width: 985px!important;
+	z-index: 5;
+}
+#div_campos select{
+	position: relative;
+	z-index: 1;
+}
+
+#studioFooter{
+	_position: relative;
+}
+#studioFooter .mainPageLayout{
+	_padding: 0 25px 0 15px;
+	_width: auto;
+}
+
+.cx_motivo{
+	_width: 300px;
+	_right: 10px;
+}
+
+#div_cabecalho_grande{
+	_width: 98%;
+}
+
+/* pngs transparents */
+#div_logo a{
+	_background: transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/logo_1.png', sizingMethod='size');
+}
+#div_cabecalho_grande h2 span{
+	_background: transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/bg_title_span.png', sizingMethod='size');
+}
+.icon_pdf{
+	_background: transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/pdf_32.png', sizingMethod='size');
+}
+.icon_txt{
+	_background: transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/txt_32.png', sizingMethod='size');
+}
+#toggle{
+	_background: transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/sq_down.png', sizingMethod='size');
+}
+div.simples{
+	_padding-left: 8px;
+}
+div.simples .icon{
+	_display: none;
+}
+div.sucesso .icon{
+	_background:transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/msg/ok.png', sizingMethod='size');
+}
+div.erro .icon{
+	_background:transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/msg/erro.png', sizingMethod='size');
+}
+div.alerta .icon{
+	_background:transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/msg/alert.png', sizingMethod='size');
+}
+div.informe .icon{
+	_background:transparent;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/msg/info.png', sizingMethod='size');
+}
+/* menu */
+#itens li .icon{
+	_float: left;
+	_width: 100px;
+	_height: 100px;
+}
+#itens .item1 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item1.png', sizingMethod='size');
+}
+#itens .item2 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item2.png', sizingMethod='size');
+}
+#itens .item3 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item3.png', sizingMethod='size');
+}
+#itens .item4 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item4.png', sizingMethod='size');
+}
+#itens .item5 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item5.png', sizingMethod='size');
+}
+#itens .item6 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item6.png', sizingMethod='size');
+}
+#itens .item7 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item7.png', sizingMethod='size');
+}
+#itens .item8 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item8.png', sizingMethod='size');
+}
+#itens .item9 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item9.png', sizingMethod='size');
+}
+#itens .item10 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item10.png', sizingMethod='size');
+}
+#itens .item11 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item11.png', sizingMethod='size');
+}
+#itens .item12 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item12.png', sizingMethod='size');
+}
+#itens .item13 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item13.png', sizingMethod='size');
+}
+#itens .item14 .icon{
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (src='http://10.0.2.2/infoconsig_dev/View/public/image/icons/ie6/item14.png', sizingMethod='size');
+}
+.abrirTodosDescontos.mais, .abrirTodosGrupos.mais{
+	_background: url("../image/icons/ie6/btn_expande.gif") no-repeat;
+	_background-position: 10px center;
+}
+.abrirTodosDescontos.menos, .abrirTodosGrupos.menos{
+	_background: url("../image/icons/ie6/btn_collapse.gif") no-repeat;
+	_background-position: 10px center;
+}
+.fechamentoDescontosFolha .servidor.mais, .exibeDadosTabela .agrupamento.mais{
+	_background:#0B5A93 url("../image/icons/ie6/btn_expande.png") no-repeat;
+	_background-position: 10px center;
+}
+.fechamentoDescontosFolha .servidor.menos, .exibeDadosTabela .agrupamento.menos{
+	_background:#0B5A93 url("../image/icons/ie6/btn_collapse.png") no-repeat;
+	_background-position: 10px center;
+}
+/* fim pngs transparents */
+
+/* forms */
+.seguraPaginacao{
+	_height: 35px;
+	_margin-bottom: 0!important;
+	_clear: both;
+}
+	#listagemDados .seguraPaginacao li input.paginaAtual{
+		_height: 16px;
+	}
+
+dl.jform dd{
+	_float: none;
+}
+	dl.jform dd.ie6_left{
+		_float: left;
+		_margin-left: 3px;
+	}
+	dl.jform dd input{
+		_margin-top: 2px;
+	}
+	.ie6_check{
+		_margin-top: -5px;
+	}
+		.ie6_check input{
+			_border: none;
+		}
+	.ie6_margin_cpf{
+		_margin-bottom: 73px!important;
+	}
+	.ie6_margin_dd dd{
+		*margin-left: 57px!important;
+		_margin-left: 345px!important;
+	}
+	.btnIncluir,
+	.margemIncluir{
+		_width: 145px;
+	}
+	.ie6_margin_bt{
+		_margin-left: 110px!important;
+	}
+	.ie6_pos_margin{
+		_margin-left: 30px!important;
+	}
+	.ie6_pos_margin2{
+		_margin-left: 15px!important;
+	}
+.jform .select{
+	_display: inline;
+	_width: auto;
+	_padding: 0;
+	_border: none;
+}
+
+.ie6_w1{
+	_width: 300px;
+	_text-align: center;
+}
+
+/* estilos botões */
+input.cancelar,
+.btnCancelCartao a{
+	_background: #ff3232;
+}
+input.cancelar:hover,
+.btnCancelCartao a:hover{
+	_background: #ff3232;
+}
+input.confirmar,
+.btnReativarCartao a{
+	_background: #30cc28;
+}
+input.confirmar:hover,
+.btnReativarCartao a:hover{
+	_background: #30cc28;
+}
+input.consulta:hover{
+	_background: #177CC4;
+}
+
+.btnSuspenderCartao a{
+	_background: #FFE51E;
+}
+.btnSuspenderCartao a:hover{
+	_background: #FFE51E;
+}

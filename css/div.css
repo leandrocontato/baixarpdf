@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+.msgalerta{
+	background:  url("../image/alert_icon_32x32.png") no-repeat scroll 6px center #FFFFCC;
+
+	padding: 10px;
+	border: 1px solid #FBE187;
+	-moz-border-radius:  8px 8px 8px 8px; /* Para Firefox */
+	-webkit-border-radius: 8px 8px 8px 8px; /*Para Safari e Chrome */
+	border-radius: 8px 8px 8px 8px; /* Para Opera 10.5+*/
+	display: none;
+	text-align: justify;
+	padding: 10px 10px 10px 45px;
+
+}
+.msgalertaSolicitacao{
+	background: #FFFFCC;
+	padding: 10px;
+	border: 1px solid #FBE187;
+	-moz-border-radius: 8px; /* Para Firefox */
+	-webkit-border-radius: 8px; /*Para Safari e Chrome */
+	border-radius: 8px; /* Para Opera 10.5+*/
+	width:700px;
+	align:center;
+	vertical-align: middle;
+}
+
+
+.msg_validateCartao{
+	background: #FF6666;
+	padding: 10px;
+	border: 1px solid #f00;
+	color: #990000;
+	-moz-border-radius: 8px; /* Para Firefox */
+	-webkit-border-radius: 8px; /*Para Safari e Chrome */
+	border-radius: 8px; /* Para Opera 10.5+*/
+	display: inline-block;
+	display: tablle-cell;
+	vertical-align: middle;
+}
+.msg_validateCartaoSolicitacao{
+	background: #FF6666;
+	padding: 10px;
+	border: 1px solid #f00;
+	color: #990000;
+	-moz-border-radius: 8px; /* Para Firefox */
+	-webkit-border-radius: 8px; /*Para Safari e Chrome */
+	border-radius: 8px; /* Para Opera 10.5+*/
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.msg1{
+	background: #FFFFCC;
+	padding: 10px;
+	border: 1px solid #FBE187;
+}
+
+
+/*Divs referentes a tela de login */
+#div_login_superior_esquerda {
+	width: 1014px;
+	height: 196px;
+	background-image: url("../image/login/login_superior_esq.jpg");
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#div_login_superior_direita {
+	width: 322px;
+	height: 197px;
+	background-image: url("../image/login/login_superior_dir.jpg");
+	position: absolute;
+	left: 1014px;
+	top: 0px;
+}
+
+#div_login_superior_direita_fina {
+	width: 100%;
+	height: 197px;
+	background-image: url("../image/login/login_superior_dir_fina.jpg");
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#div_fundo_campo {
+	width: 100%;
+	height: 197px;
+	background-image: url("../image/login/login_fundo_campo_quadrado.jpg");
+	position: absolute;
+	left: 0px;
+	top: 194px;
+}
+
+#div_login_inferior_textura {
+	width: 1336px;
+	height: 369px;
+	background-image: url("../image/login/login_inferior_textura.jpg");
+	position: absolute;
+	left: 0px;
+	top: 391px;
+}
+
+#div_login_inferior_textura_linha {
+	width: 100%;
+	height: 369px;
+	background-image: url("../image/login/login_inferior_textura_linha.jpg");
+	position: absolute;
+	left: 0px;
+	top: 391px;
+}
+
+#div_login_quadrado_campos {
+	width: 255px;
+	height: 150px;
+	background-repeat: no-repeat;
+	position: relative;
+	left: 485px;
+	top: 195px;
+}
+
+#div_login_campos {
+	width: 430px;
+	height: 164px;
+	position: relative;
+	left: 60px;
+	top: 30px;
+}
+
+#div_erro_login {
+	width: 262px;
+	height: 80px;
+	position: absolute;
+	left: 570px;
+	top: 338px;
+}
+
+#div_erro {
+	background-color: #fdfde7;
+}
+
+#div_interna {
+    padding-top: 2px;
+	width: 100%;
+}
+
+
+
+#form_busca {
+	display: inline;
+}
+
+#busca {
+	height: 14px;
+	width: 100px;
+	border: solid 1px #d7d7d7;
+}

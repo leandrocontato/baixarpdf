@@ -1,0 +1,116 @@
+/*
+Plugin Name: JQuery MSG
+Criado por: Jefferson Siqueira
+Versão: 1.0
+*/
+div.simples,
+div.lista {
+	display:none;
+	padding: 8px 8px 8px 36px;
+	width: auto;
+	height: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color:#fff;
+	font-weight: bold;
+	line-height: 19px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	-webkit-box-shadow: 1px 2px 2px #000;
+	-moz-box-shadow: 1px 2px 2px #000;
+	box-shadow: 1px 2px 2px #000;
+	z-index: 9998;
+}
+	div.simples .icon,
+	div.lista .icon{
+		position: absolute;
+		top: 8px;
+		left: 8px;
+		width: 20px;
+		height: 20px;
+		margin: 0!important;
+	}
+    div.simples a{
+        color:#fff;
+    }
+
+	/* sucesso */
+	div.simples.sucesso,
+	div.lista.sucesso{
+		background: #299a0b; /* Old browsers */
+		background: -moz-linear-gradient(top, #299a0b 0%, #28890b 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#299a0b), color-stop(100%,#28890b)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #299a0b 0%,#28890b 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #299a0b 0%,#28890b 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #299a0b 0%,#28890b 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #299a0b 0%,#28890b 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#299a0b', endColorstr='#28890b',GradientType=0 ); /* IE6-9 */
+		border:1px solid #017e3f;
+	}
+		div.sucesso .icon{
+			background-image: url('../image/msg/ok.png');
+		}
+
+	/* erro */
+	div.simples.erro,
+	div.lista.erro{
+		background: #ff1a00; /* Old browsers */
+		background: -moz-linear-gradient(top, #ff1a00 0%, #c00000 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff1a00), color-stop(100%,#c00000)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ff1a00 0%,#c00000 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ff1a00 0%,#c00000 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ff1a00 0%,#c00000 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #ff1a00 0%,#c00000 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff1a00', endColorstr='#c00000',GradientType=0 ); /* IE6-9 */
+		border:1px solid #960000;
+	}
+		div.erro .icon{
+			background-image: url('../image/msg/erro.png');
+		}
+
+	/* alerta */
+	div.simples.alerta,
+	div.lista.alerta{
+		background: #ffffb5; /* Old browsers */
+		background: -moz-linear-gradient(top, #ffffb5 0%, #ffff99 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffb5), color-stop(100%,#ffff99)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffb5 0%,#ffff99 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ffffb5 0%,#ffff99 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ffffb5 0%,#ffff99 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #ffffb5 0%,#ffff99 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffb5', endColorstr='#ffff99',GradientType=0 ); /* IE6-9 */
+		border:1px solid #d4aa02;
+		color: #866620;
+	}
+		div.alerta .icon{
+			background-image: url('../image/msg/alert.png');
+		}
+        div.simples.alerta a{
+            color: #866620;
+        }
+
+	/* informe */
+	div.simples.informe,
+	div.lista.informe{
+		background: #0E70BC;
+		background: -moz-linear-gradient(top, #499bea 0%, #0e70bc 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#0e70bc)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #499bea 0%,#0e70bc 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #499bea 0%,#0e70bc 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #499bea 0%,#0e70bc 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #499bea 0%,#0e70bc 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0e70bc',GradientType=0 ); /* IE6-9 */
+		border:1px solid #084274;
+	}
+		div.informe .icon{
+			background-image: url('../image/msg/info.png');
+		}
+
+    #msg_closed{
+        position: absolute;
+        top: 8px;
+        right: 5px;
+    }
