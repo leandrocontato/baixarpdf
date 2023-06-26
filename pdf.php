@@ -482,25 +482,35 @@ if (isset($_POST['div_campos'])) {
             }
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.getElementById('btn-print').addEventListener('click', function() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', window.location.href);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.responseType = 'blob';
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var blob = new Blob([xhr.response], {
-                        type: 'application/pdf'
-                    });
-                    var fileName = 'Consulta de Margem de Consignação ' + new Date().toISOString().split('T')[0] + '.pdf';
-                    var link = document.createElement('a');
-                    link.href = URL.createObjectURL(blob);
-                    link.download = fileName;
-                    link.click();
-                }
-            };
-            xhr.send('div_campos=' + encodeURIComponent(document.getElementById('div_campos').innerHTML));
+        $(document).ready(function() {
+            // mensagem
+            const alertElement = $('#alert');
+            const defaultBtn = $('.btn.btn-default');
+            alertElement.hide();
+            $('#alert .close').click(() => alertElement.hide());
+            defaultBtn.click(() => alertElement.show());
+            // pdf
+            document.getElementById('btn-print').addEventListener('click', function() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', window.location.href);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.responseType = 'blob';
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var blob = new Blob([xhr.response], {
+                            type: 'application/pdf'
+                        });
+                        var fileName = 'Consulta de Margem de Consignação ' + new Date().toISOString().split('T')[0] + '.pdf';
+                        var link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = fileName;
+                        link.click();
+                    }
+                };
+                xhr.send('div_campos=' + encodeURIComponent(document.getElementById('div_campos').innerHTML));
+            });
         });
     </script>
 </body>
