@@ -491,12 +491,8 @@ if (isset($_POST['div_campos'])) {
         </div>
     </div>
 </div><!-- fim div_campos -->
-<!-- <button type="button" id="btn-print" class="btn btn-default"><i class="fas fa-download"></i> Baixar PDF</button> -->
 <div class="clearfix"></div>
-<!-- <script src="View\public\script\jquery-1.7.2.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="jquery-3.7.0.js"></script>
-<script src="bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/layout.css">
 <script src="https://kit.fontawesome.com/b7a90d0458.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
@@ -504,7 +500,8 @@ if (isset($_POST['div_campos'])) {
     $(document).ready(function() {
         // mensagem
         $('#alert .close').click(() => $('#alert').hide());
-        $('#btn-print').click(() => $('.mensagem').show()); // pdf
+        $('#btn-print').click(() => $('.mensagem').show()); 
+        // pdf
         document.getElementById('btn-print').addEventListener('click', function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', window.location.href);
