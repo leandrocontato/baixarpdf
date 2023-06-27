@@ -121,13 +121,40 @@ if (isset($_POST['div_campos'])) {
                 foreach ($rows as $row) {
                     $cells = $row->getElementsByTagName('td');
                     foreach ($cells as $cell) {
-                        $content = htmlspecialchars_decode($cell->nodeValue, ENT_QUOTES);
-                        $this->Cell(40, 10, iconv('UTF-8', 'ISO-8859-1', $content), 1, 0, 'C');
+                        $content = $this->extractHTMLContent($cell);
+                        $this->Cell(40, 10, $content, 1, 0, 'C');
                     }
                     $this->Ln();
                 }
             }
         }
+
+        function extractHTMLContent($node)
+        {
+            $content = '';
+
+            foreach ($node->childNodes as $childNode) {
+                if ($childNode->nodeType === XML_TEXT_NODE) {
+                    $content .= $childNode->nodeValue;
+                } elseif ($childNode->nodeType === XML_ELEMENT_NODE) {
+                    $tag = strtolower($childNode->nodeName);
+
+                    switch ($tag) {
+                        case 'br':
+                            $content .= "\n";
+                            break;
+                        default:
+                            $content .= $this->extractHTMLContent($childNode);
+                            break;
+                    }
+                }
+            }
+
+            return $content;
+        }
+
+
+
 
         function processTable($node)
         {
@@ -194,9 +221,9 @@ if (isset($_POST['div_campos'])) {
 ?>
 <div id="div_campos" class="col-md-12">
     <div class="container col-xs-10 col-sm-8 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-2 col-md-offset-1 col-lg-offset-1">
-        <div id="alert" class="mensagem" role="alert">
-            <button class="close" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
-            <strong>Congratulations!</strong> You successfully tied your shoelace!
+        <div id="alert" class="mensagem">
+            <button class="close"><i class="fa-solid fa-circle-xmark"></i></button>
+            <strong>Congratulations!</strong>You successfully tied your shoelace!
         </div>
         <div style="text-align:left;">
             <h2 class="title"><i class="fa-solid fa-filter-circle-dollar" style="color:#1384AD;"></i> Consulta Margem de Consignação</h2>
