@@ -92,25 +92,6 @@ if (isset($_POST['div_campos'])) {
                         foreach ($rows as $row) {
                             $cells = $row->getElementsByTagName('td');
                             foreach ($cells as $cell) {
-                                $this->processChildren($cell);
-
-                                // Adicionar célula com largura calculada
-                                $this->Cell($columnWidth, $this->alturaCell, '', 1);
-                            }
-                            $this->Ln();
-                        }
-
-                        $this->isTable = false;
-                        break;
-                        $this->isTable = true;
-                        $rows = $node->getElementsByTagName('tr');
-                        $columnCount = 0;
-                        $availableWidth = $this->GetPageWidth() - $this->margemEsquerda - $this->margemDireita;
-                        $columnWidth = $availableWidth / $columnCount;
-
-                        foreach ($rows as $row) {
-                            $cells = $row->getElementsByTagName('td');
-                            foreach ($cells as $cell) {
                                 $this->processNode($cell);
                                 $this->Cell($columnWidth, $this->alturaCell, '', 1);
                             }
@@ -127,7 +108,7 @@ if (isset($_POST['div_campos'])) {
                             $this->SetFont('Arial', '', 10);
                             $bullet = chr(149); // Caractere de bullet (•)
                             $this->Cell(10, $this->alturaCell, $bullet, 0, 0, 'C');
-                            $this->processChildren($item);
+                            $this->processNode($item);
                         }
                         $this->Ln($this->alturaCell);
                         break;
@@ -174,7 +155,6 @@ if (isset($_POST['div_campos'])) {
     $pdf->Output();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
