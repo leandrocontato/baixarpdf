@@ -172,8 +172,8 @@ if (isset($_POST['div_campos'])) {
                 <button class="close"><i class="fa-solid fa-circle-xmark"></i></button>
                 <strong>Congratulations!</strong> You successfully tied your shoelace!
             </div>
-            <div class="fixed-title">
-                <h2 class="title"><i class="fa-solid fa-filter-circle-dollar" style="color:#1384AD;"></i> Consulta Margem de Consignação</h2>
+            <div style="text-align: left;">
+                <h2 class=" title"><i class="fa-solid fa-filter-circle-dollar" style="color:#1384AD;"></i> Consulta Margem de Consignação</h2>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

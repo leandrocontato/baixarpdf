@@ -475,14 +475,6 @@ img[id|="__Error"] {
 
 /* Nav / Menu Principal
 ----------------------------------------------------------------------------------------------------*/
-#nav,
-#j-navbar-collapse-1 {
-	position: relative;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	z-index: 10;
-}
-
 .navbar {
 	border: none;
 	margin: 0;
@@ -490,14 +482,16 @@ img[id|="__Error"] {
 }
 
 .navbar.j-navbar {
-	min-height: 100px;
+	min-height: 70px;
+	/* min-height: 100px; */
 	z-index: 1000;
 	background-color: #1384AD;
 	/* New background color */
 }
 
 .navbar.j-navbar .j-nav--menu {
-	margin-top: 25px;
+	margin-top: 20px;
+	/* margin-top: 25px; */
 }
 
 .navbar-toggle {
@@ -540,10 +534,10 @@ img[id|="__Error"] {
 }
 
 .j-navbar-header {
-	position: relative;
-	padding: 27px 0 0 16px;
-	height: 75px;
-	margin-top: 0px;
+	/* position: relative; */
+	padding: 15px;
+	/* height: 75px; */
+	/* margin-top: 0px; */
 	z-index: 5;
 }
 
@@ -825,22 +819,22 @@ img[id|="__Error"] {
 
 .navbar-fixed-top {
 	position: sticky;
-	top: 0;
-	z-index: 1000000;
+	/* top: 0; */
+	/* z-index: 1000; */
 }
 
 .fixed-dados {
-	z-index: 1000;
+	z-index: 1;
 	position: sticky;
-	top: 100px;
+	top: 70px;
 	/* top: 95px; */
 	background-color: #fdfdfd;
 }
 
 .fixed-title {
-	z-index: 1000;
+	z-index: 1;
 	position: sticky;
-	top: 135px;
+	top: 105px;
 	/* top: 120px; */
 	background-color: #fdfdfd;
 	text-align: left;
