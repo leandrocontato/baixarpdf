@@ -290,12 +290,14 @@ img[id|="__Error"] {
 }
 
 #div_info_login {
+	margin-right: 10px;
 	position: relative;
 	width: 250px;
 	height: 75px;
 	text-align: right;
 	font-size: 11px;
 	line-height: 15px;
+	margin-top: -65px;
 }
 
 #div_info_login .local {
@@ -476,10 +478,9 @@ img[id|="__Error"] {
 #nav,
 #j-navbar-collapse-1 {
 	position: relative;
-	/* padding-top: 5px;
+	padding-top: 5px;
 	padding-bottom: 5px;
-	z-index: 10; */
-
+	z-index: 10;
 }
 
 .navbar {
@@ -495,9 +496,9 @@ img[id|="__Error"] {
 	/* New background color */
 }
 
-/* .navbar.j-navbar .j-nav--menu {
+.navbar.j-navbar .j-nav--menu {
 	margin-top: 25px;
-} */
+}
 
 .navbar-toggle {
 	margin-top: 30px;
@@ -539,10 +540,10 @@ img[id|="__Error"] {
 }
 
 .j-navbar-header {
-	margin-top: 17px;
-	/* position: relative; */
-	/* padding: 27px 0 0 16px; */
-	/* height: 30px; */
+	position: relative;
+	padding: 27px 0 0 16px;
+	height: 75px;
+	margin-top: 0px;
 	z-index: 5;
 }
 
@@ -600,7 +601,7 @@ img[id|="__Error"] {
 
 #conteudo h2.title {
 	margin: 16px;
-	position: relative;
+	/* position: relative; */
 	height: 40px;
 	font-weight: 100;
 	font-size: 28px;
@@ -634,49 +635,6 @@ img[id|="__Error"] {
 #div_campos .w_filtro_margem {
 	width: 470px;
 } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Consulta Margem de Consignação
 ----------------------------------------------------------------------------------------------------*/
@@ -872,14 +830,18 @@ img[id|="__Error"] {
 }
 
 .fixed-dados {
+	z-index: 1000;
 	position: sticky;
-	top: 95px;
+	top: 100px;
+	/* top: 95px; */
 	background-color: #fdfdfd;
 }
 
 .fixed-title {
+	z-index: 1000;
 	position: sticky;
-	top: 120px;
+	top: 135px;
+	/* top: 120px; */
 	background-color: #fdfdfd;
 	text-align: left;
 }
@@ -893,18 +855,6 @@ img[id|="__Error"] {
 		top: 0;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Footer / Rodapé
 ----------------------------------------------------------------------------------------------------*/
