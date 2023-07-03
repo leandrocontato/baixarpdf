@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
+require('FPDF/fpdf.php');
 
 class CustomPDF extends FPDF
 {
@@ -440,6 +441,7 @@ if (isset($_POST['div_campos'])) {
         </div>
     </div><!-- fim div_campos -->
     <div class="clearfix"></div>
+    <link rel="stylesheet" href="css/layout.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" href="View\public\css\layout.css">
