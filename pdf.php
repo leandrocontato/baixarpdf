@@ -1,144 +1,142 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 
-if (isset($_POST['div_campos'])) {
-    require('FPDF/fpdf.php');
+class CustomPDF extends FPDF
+{
+    public $headerText = 'Cabeçalho';
+    public $footerText = 'Rodapé';
+    public $margemEsquerda = 7;
+    public $margemDireita = 10;
+    public $margemTopo = 10;
+    public $alturaCell = 4;
+    public $linhaCabecalho_01 = 0;
+    public $alturaBordaRodape = 15;
+    public $isTable = false;
 
-    class CustomPDF extends FPDF
+    function Header()
     {
-        public $headerText = 'Cabeçalho';
-        public $footerText = 'Rodapé';
-        public $margemEsquerda = 7;
-        public $margemDireita = 10;
-        public $margemTopo = 10;
-        public $alturaCell = 4;
-        public $linhaCabecalho_01 = 0;
-        public $alturaBordaRodape = 15;
-        public $isTable = false;
+        $this->SetFont('Arial', 'B', 15);
+        $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->headerText), 0, 1, 'C');
+        $this->Cell(30, 10, 'infoconsig', 1, 0, 'C');
+        $this->Ln(20);
+    }
 
-        function Header()
-        {
-            $this->SetFont('Arial', 'B', 15);
-            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->headerText), 0, 1, 'C');
-            $this->Cell(30, 10, 'infoconsig', 1, 0, 'C');
-            $this->Ln(20);
-        }
+    function Footer()
+    {
+        $this->SetY(-$this->alturaBordaRodape);
+        $this->SetFont('Arial', 'I', 8);
 
-        function Footer()
-        {
-            $this->SetY(-$this->alturaBordaRodape);
-            $this->SetFont('Arial', 'I', 8);
+        $this->SetX($this->margemEsquerda);
+        date_default_timezone_set('America/Sao_Paulo');
+        $this->Cell(0, 18, date('d/m/Y H:i:s'), 0, 0, 'L');
 
-            $this->SetX($this->margemEsquerda);
-            date_default_timezone_set('America/Sao_Paulo');
-            $this->Cell(0, 18, date('d/m/Y H:i:s'), 0, 0, 'L');
+        $this->SetX(($this->margemEsquerda + $this->margemDireita) / 2);
+        $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->footerText), 0, 0, 'C');
 
-            $this->SetX(($this->margemEsquerda + $this->margemDireita) / 2);
-            $this->Cell(0, 10, iconv('UTF-8', 'ISO-8859-1', $this->footerText), 0, 0, 'C');
+        $this->SetX($this->margemDireita);
+        $this->AliasNbPages();
+        $this->Cell(0, 18, iconv('UTF-8', 'ISO-8859-1', 'Página') . ' ' . $this->PageNo() . ' de ' . '{nb}', 0, 0, 'C');
 
-            $this->SetX($this->margemDireita);
-            $this->AliasNbPages();
-            $this->Cell(0, 18, iconv('UTF-8', 'ISO-8859-1', 'Página') . ' ' . $this->PageNo() . ' de ' . '{nb}', 0, 0, 'C');
+        $this->Cell(0, 18, 'http://www.infoconsig.com.br', 0, 0, 'R');
+    }
 
-            $this->Cell(0, 18, 'http://www.infoconsig.com.br', 0, 0, 'R');
-        }
+    function HTMLContent($html)
+    {
+        $dom = new DOMDocument();
+        $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
+        $dom->encoding = 'UTF-8';
+        $body = $dom->getElementsByTagName('body')->item(0);
+        $this->processNode($body);
+    }
 
-        function HTMLContent($html)
-        {
-            $dom = new DOMDocument();
-            $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
-            $dom->encoding = 'UTF-8';
-            $body = $dom->getElementsByTagName('body')->item(0);
-            $this->processNode($body);
-        }
+    function processNode($node)
+    {
+        if ($node->nodeType === XML_TEXT_NODE) {
+            $this->Write($this->alturaCell, iconv('UTF-8', 'ISO-8859-1', $node->nodeValue));
+        } elseif ($node->nodeType === XML_ELEMENT_NODE) {
+            $tag = strtolower($node->nodeName);
 
-        function processNode($node)
-        {
-            if ($node->nodeType === XML_TEXT_NODE) {
-                $this->Write($this->alturaCell, iconv('UTF-8', 'ISO-8859-1', $node->nodeValue));
-            } elseif ($node->nodeType === XML_ELEMENT_NODE) {
-                $tag = strtolower($node->nodeName);
+            switch ($tag) {
+                case 'br':
+                    $this->Ln($this->alturaCell);
+                    break;
+                case 'b':
+                case 'i':
+                case 'u':
+                    $this->SetFont('Arial', $tag === 'b' ? 'B' : ($tag === 'i' ? 'I' : 'U'), '', true);
+                    foreach ($node->childNodes as $childNode) {
+                        $this->processNode($childNode);
+                    }
+                    $this->SetFont('Arial', '');
+                    break;
+                case 'table':
+                    $this->isTable = true;
+                    $rows = $node->getElementsByTagName('tr');
+                    $columnCount = 0;
 
-                switch ($tag) {
-                    case 'br':
-                        $this->Ln($this->alturaCell);
-                        break;
-                    case 'b':
-                    case 'i':
-                    case 'u':
-                        $this->SetFont('Arial', $tag === 'b' ? 'B' : ($tag === 'i' ? 'I' : 'U'));
-                        foreach ($node->childNodes as $childNode) {
-                            $this->processNode($childNode);
+                    // Calcular o número de colunas
+                    foreach ($rows as $row) {
+                        $cells = $row->getElementsByTagName('td');
+                        $columnCount = max($columnCount, $cells->length);
+                    }
+
+                    // Calcular a largura disponível para a tabela
+                    $availableWidth = $this->GetPageWidth() - $this->margemEsquerda - $this->margemDireita;
+
+                    // Calcular a largura de cada coluna
+                    $columnWidth = $availableWidth / $columnCount;
+
+                    foreach ($rows as $row) {
+                        $cells = $row->getElementsByTagName('td');
+                        foreach ($cells as $cell) {
+                            $this->processNode($cell);
+                            $this->Cell($columnWidth, $this->alturaCell, '', 1);
                         }
-                        $this->SetFont('Arial', '');
-                        break;
-                    case 'table':
-                        $this->isTable = true;
-                        $rows = $node->getElementsByTagName('tr');
-                        $columnCount = 0;
+                        $this->Ln();
+                    }
 
-                        // Calcular o número de colunas
-                        foreach ($rows as $row) {
-                            $cells = $row->getElementsByTagName('td');
-                            $columnCount = max($columnCount, $cells->length);
-                        }
-
-                        // Calcular a largura disponível para a tabela
-                        $availableWidth = $this->GetPageWidth() - $this->margemEsquerda - $this->margemDireita;
-
-                        // Calcular a largura de cada coluna
-                        $columnWidth = $availableWidth / $columnCount;
-
-                        foreach ($rows as $row) {
-                            $cells = $row->getElementsByTagName('td');
-                            foreach ($cells as $cell) {
-                                $this->processNode($cell);
-                                $this->Cell($columnWidth, $this->alturaCell, '', 1);
-                            }
-                            $this->Ln();
-                        }
-
-                        $this->isTable = false;
-                        break;
-                    case 'ul':
-                        $this->Ln($this->alturaCell);
-                        $items = $node->getElementsByTagName('li');
-                        foreach ($items as $item) {
-                            $this->Ln(5);
-                            $this->SetFont('Arial', '', 10);
-                            $bullet = chr(149); // Caractere de bullet (•)
-                            $this->Cell(10, $this->alturaCell, $bullet, 0, 0, 'C');
-                            $this->processNode($item);
-                        }
-                        $this->Ln($this->alturaCell);
-                        break;
-                    case 'li':
-                        $this->SetFont('Arial', '');
-                        $this->Ln($this->alturaCell);
+                    $this->isTable = false;
+                    break;
+                case 'ul':
+                    $this->Ln($this->alturaCell);
+                    $items = $node->getElementsByTagName('li');
+                    foreach ($items as $item) {
+                        $this->Ln(5);
+                        $this->SetFont('Arial', '', 10);
                         $bullet = chr(149); // Caractere de bullet (•)
                         $this->Cell(10, $this->alturaCell, $bullet, 0, 0, 'C');
-                        foreach ($node->childNodes as $childNode) {
-                            $this->processNode($childNode);
-                        }
-                        $this->Ln($this->alturaCell);
-                        break;
-                    case 'h1':
-                        $this->SetFont('Arial', 'B', 14);
-                        foreach ($node->childNodes as $childNode) {
-                            $this->processNode($childNode);
-                        }
-                        $this->SetFont('Arial', '');
-                        break;
-                    default:
-                        foreach ($node->childNodes as $childNode) {
-                            $this->processNode($childNode);
-                        }
-                        break;
-                }
+                        $this->processNode($item);
+                    }
+                    $this->Ln($this->alturaCell);
+                    break;
+                case 'li':
+                    $this->SetFont('Arial', '');
+                    $this->Ln($this->alturaCell);
+                    $bullet = chr(149); // Caractere de bullet (•)
+                    $this->Cell(10, $this->alturaCell, $bullet, 0, 0, 'C');
+                    foreach ($node->childNodes as $childNode) {
+                        $this->processNode($childNode);
+                    }
+                    $this->Ln($this->alturaCell);
+                    break;
+                case 'h1':
+                    $this->SetFont('Arial', 'B', 14);
+                    foreach ($node->childNodes as $childNode) {
+                        $this->processNode($childNode);
+                    }
+                    $this->SetFont('Arial', '');
+                    break;
+                default:
+                    foreach ($node->childNodes as $childNode) {
+                        $this->processNode($childNode);
+                    }
+                    break;
             }
         }
     }
+}
 
+if (isset($_POST['div_campos'])) {
     $pdf = new CustomPDF();
     $pdf->SetFont('Arial', '', 10);
     $pdf->AddPage();
@@ -152,7 +150,10 @@ if (isset($_POST['div_campos'])) {
     $pdf->SetLeftMargin($pdf->margemEsquerda);
     $pdf->SetRightMargin($pdf->margemDireita);
     $pdf->HTMLContent($html);
-    $pdf->Output();
+    $pdf->Output('I', 'filename.pdf');
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
 }
 ?>
 
@@ -439,8 +440,9 @@ if (isset($_POST['div_campos'])) {
         </div>
     </div><!-- fim div_campos -->
     <div class="clearfix"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="View\public\css\layout.css">
     <script src="https://kit.fontawesome.com/b7a90d0458.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
     <script>
@@ -469,6 +471,13 @@ if (isset($_POST['div_campos'])) {
                 xhr.send('div_campos=' + encodeURIComponent(document.getElementById('div_campos').innerHTML));
             });
         });
+        // $("a[id^='btn-print'], button[id^='btn-print']").on("click", function() {
+        //     var button = $(this).attr("id");
+        //     if (button.search("PDF") > -1) {
+        //         location.href = __InfoconsigURL + 'consultamargemdeconsignacao/pdf_consultamargemdeconsignacao';
+        //     }
+        //     return false;
+        // });
     </script>
 
 </body>
