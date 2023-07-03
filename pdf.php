@@ -286,9 +286,7 @@ require_once 'pdf_consultamargemdeconsignacao.php';
     </div><!-- fim div_campos -->
     <div class="clearfix"></div>
     <link rel="stylesheet" href="css/layout.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="View\public\css\layout.css">
     <script src="https://kit.fontawesome.com/b7a90d0458.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
     <script>
