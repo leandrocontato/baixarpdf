@@ -471,13 +471,6 @@ if (isset($_POST['div_campos'])) {
                 xhr.send('div_campos=' + encodeURIComponent(document.getElementById('div_campos').innerHTML));
             });
         });
-        // $("a[id^='btn-print'], button[id^='btn-print']").on("click", function() {
-        //     var button = $(this).attr("id");
-        //     if (button.search("PDF") > -1) {
-        //         location.href = __InfoconsigURL + 'consultamargemdeconsignacao/pdf_consultamargemdeconsignacao';
-        //     }
-        //     return false;
-        // });
     </script>
 
 </body>
